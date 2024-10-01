@@ -1,2 +1,2 @@
-A blockchain written in Typescript
+A blockchain written in Typescript<br>
 building...
