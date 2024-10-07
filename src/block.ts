@@ -52,16 +52,16 @@ function generate_new_block(block_data: string): Block {
 	return new_block;
 }
 
-function validate_block(new_block: Block, prev_block: Block): boolean {
-	const block_structute = (block: Block): Boolean => {
-		return typeof block.index === 'number'
-			&& typeof block.data === 'string'
-			&& typeof block.hash === 'string'
-			&& typeof block.prev_hash === 'string'
-			&& typeof block.timestamp === 'number'
-	}
+function validate_block_structure(block: Block): boolean {
+	return typeof block.index === 'number'
+		&& typeof block.data === 'string'
+		&& typeof block.hash === 'string'
+		&& typeof block.prev_hash === 'string'
+		&& typeof block.timestamp === 'number'
+}
 
-	if (!block_structute(new_block)) {
+function validate_block(new_block: Block, prev_block: Block): boolean {
+	if (!validate_block_structure(new_block)) {
 		console.log(`\u001b[31mWarning: The block at index ${new_block.index} is invalid.\nBlock structure is inconsistent\u001b[0m`)
 		return false;
 	}
@@ -116,4 +116,4 @@ function replace_chain(new_chain: Block[]): boolean {
 	return false;
 }
 
-export { Block, get_blockchain, generate_new_block, replace_chain }
+export { Block, get_blockchain, generate_new_block, get_latest_block, validate_block_structure, add_block, replace_chain }
